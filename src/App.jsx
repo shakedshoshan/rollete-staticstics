@@ -60,8 +60,8 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] p-2 sm:p-4 lg:p-6">
-      <div className="max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl p-3 sm:p-4 lg:p-6">
+    <div className="w-screen min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-3 sm:px-4 lg:px-6">
+      <div className="max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl p-4 sm:p-6">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-6 sm:mb-8 drop-shadow-lg">
           Roulette Statistics
         </h1>
@@ -89,7 +89,7 @@ function App() {
             Predicted Numbers
           </h2>
           <div className="flex flex-wrap gap-3 justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full">
               {/* First Third */}
               <div className="flex flex-col gap-3 bg-[#f8f9fa] p-4 rounded-lg shadow-md">
                 <h3 className="text-lg sm:text-xl font-bold text-center text-[#000000] border-b border-[#000000] pb-2">
