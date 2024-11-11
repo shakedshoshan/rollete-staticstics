@@ -60,8 +60,8 @@ function App() {
   }
 
   return (
-    <div className="w-screen min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-3 sm:px-4 lg:px-6">
-      <div className="max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl p-4 sm:p-6">
+    <div className="min-h-screen w-full bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] p-2 sm:p-4 lg:p-6">
+      <div className="max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl p-3 sm:p-4 lg:p-6">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-6 sm:mb-8 drop-shadow-lg">
           Roulette Statistics
         </h1>
@@ -89,28 +89,39 @@ function App() {
             Predicted Numbers
           </h2>
           <div className="flex flex-wrap gap-3 justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 w-full">
               {/* First Third */}
               <div className="flex flex-col gap-3 bg-[#f8f9fa] p-4 rounded-lg shadow-md">
                 <h3 className="text-lg sm:text-xl font-bold text-center text-[#000000] border-b border-[#000000] pb-2">
                   First (0-12)
                 </h3>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {seventeenNumbers[0]?.red.map((number) => (
-                    <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                      {number}
-                    </span>
-                  ))}
-                  {seventeenNumbers[0]?.black.map((number) => (
-                    <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                      {number}
-                    </span>
-                  ))}
-                  {seventeenNumbers[0]?.green.map((number) => (
-                    <span key={number} className="p-2 bg-green-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                      {number}
-                    </span>
-                  ))}
+                <div className="flex flex-col gap-4">
+                  {/* Red numbers row */}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {seventeenNumbers[0]?.red.map((number) => (
+                      <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
+                        {number}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Black numbers row */}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {seventeenNumbers[0]?.black.map((number) => (
+                      <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
+                        {number}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Green numbers row */}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {seventeenNumbers[0]?.green.map((number) => (
+                      <span key={number} className="p-2 bg-green-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
+                        {number}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -119,17 +130,24 @@ function App() {
                 <h3 className="text-lg sm:text-xl font-bold text-center text-[#000000] border-b border-[#000000] pb-2">
                   Second (13-24)
                 </h3>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {seventeenNumbers[1]?.red.map((number) => (
-                    <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                      {number}
-                    </span>
-                  ))}
-                  {seventeenNumbers[1]?.black.map((number) => (
-                    <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                      {number}
-                    </span>
-                  ))}
+                <div className="flex flex-col gap-4">
+                  {/* Red numbers row */}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {seventeenNumbers[1]?.red.map((number) => (
+                      <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
+                        {number}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Black numbers row */}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {seventeenNumbers[1]?.black.map((number) => (
+                      <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
+                        {number}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -138,17 +156,24 @@ function App() {
                 <h3 className="text-lg sm:text-xl font-bold text-center text-[#000000] border-b border-[#000000] pb-2">
                   Third (25-36)
                 </h3>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {seventeenNumbers[2]?.red.map((number) => (
-                    <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                      {number}
-                    </span>
-                  ))}
-                  {seventeenNumbers[2]?.black.map((number) => (
-                    <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                      {number}
-                    </span>
-                  ))}
+                <div className="flex flex-col gap-4">
+                  {/* Red numbers row */}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {seventeenNumbers[2]?.red.map((number) => (
+                      <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
+                        {number}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Black numbers row */}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {seventeenNumbers[2]?.black.map((number) => (
+                      <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
+                        {number}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
