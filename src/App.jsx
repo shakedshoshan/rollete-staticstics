@@ -53,8 +53,8 @@ function App() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-3 sm:px-4 lg:px-6">
-      <div className="max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl p-4 sm:p-6">
+    <div className="w-full min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-0 sm:px-4 lg:px-6">
+      <div className="w-full sm:max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-none sm:rounded-2xl shadow-xl p-4 sm:p-6">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-6 sm:mb-8 drop-shadow-lg">
           Roulette Statistics
         </h1>
