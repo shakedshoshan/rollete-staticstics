@@ -35,26 +35,33 @@ function App() {
     if (updatedNumbers.length > 20) {
       updatedNumbers.shift()
     }
+    
+    const newUnchosenNumbers = getUnchosenNumbers(updatedNumbers)
+    const newNumbersColors = getNumbersColors(newUnchosenNumbers)
+    const newThirds = getThirds(newNumbersColors)
+    const newFirstThird = getThirdsColors(newThirds.first)
+    const newSecondThird = getThirdsColors(newThirds.second)
+    const newThirdThird = getThirdsColors(newThirds.third)
+    const newAllNumbers = [newFirstThird, newSecondThird, newThirdThird]
+    const newFinalNumbers = getFinalNumbers(newAllNumbers, newUnchosenNumbers)
+    const newSeventeenNumbers = getSeventeenNumbers(newFinalNumbers, newAllNumbers)
+
     setNumbers(updatedNumbers)
     saveNumbers(updatedNumbers)
     setInputValue('')
-    setUnchosenNumbers(getUnchosenNumbers(updatedNumbers))
-    console.log("unchosenNumbers", unchosenNumbers)
-    setNumbersColors(getNumbersColors(unchosenNumbers))
-    setFirstThird(getThirdsColors(getThirds(numbersColors).first))
-    setSecondThird(getThirdsColors(getThirds(numbersColors).second))
-    setThirdThird(getThirdsColors(getThirds(numbersColors).third))
-    setAllNumbers([firstThird, secondThird, thirdThird])
-    console.log("allNumbers", allNumbers)
-    setFinalNumbers(getFinalNumbers(allNumbers, unchosenNumbers))
-    console.log("finalNumbers", finalNumbers)
-    setSeventeenNumbers(getSeventeenNumbers(finalNumbers, allNumbers))
-    console.log("seventeenNumbers", seventeenNumbers)
+    setUnchosenNumbers(newUnchosenNumbers)
+    setNumbersColors(newNumbersColors)
+    setFirstThird(newFirstThird)
+    setSecondThird(newSecondThird)
+    setThirdThird(newThirdThird)
+    setAllNumbers(newAllNumbers)
+    setFinalNumbers(newFinalNumbers)
+    setSeventeenNumbers(newSeventeenNumbers)
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-0 sm:px-4 lg:px-6">
-      <div className="w-full sm:max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-none sm:rounded-2xl shadow-xl p-4 sm:p-6">
+    <div className="w-screen min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-3 sm:px-4 lg:px-6">
+      <div className="max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl p-4 sm:p-6">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-6 sm:mb-8 drop-shadow-lg">
           Roulette Statistics
         </h1>
