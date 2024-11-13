@@ -9,14 +9,15 @@ import { getNumbersColors, getThirds, getThirdsColors, getFinalNumbers, getSeven
 function App() {
   const [numbers, setNumbers] = useState(getNumbers())
   const [unchosenNumbers, setUnchosenNumbers] = useState(getUnchosenNumbers(numbers))
-  const [numbersColors, setNumbersColors] = useState(getNumbersColors(unchosenNumbers))
-  const [firstThird, setFirstThird] = useState(getThirdsColors(getThirds(numbersColors).first))
-  const [secondThird, setSecondThird] = useState(getThirdsColors(getThirds(numbersColors).second))
-  const [thirdThird, setThirdThird] = useState(getThirdsColors(getThirds(numbersColors).third))
+  // const [numbersColors, setNumbersColors] = useState(getNumbersColors(unchosenNumbers))
+  // const [firstThird, setFirstThird] = useState(getThirdsColors(getThirds(numbersColors).first))
+  // const [secondThird, setSecondThird] = useState(getThirdsColors(getThirds(numbersColors).second))
+  // const [thirdThird, setThirdThird] = useState(getThirdsColors(getThirds(numbersColors).third))
   const [inputValue, setInputValue] = useState('')
-  const [allNumbers, setAllNumbers] = useState([firstThird, secondThird, thirdThird])
-  const [finalNumbers, setFinalNumbers] = useState(getFinalNumbers(allNumbers))
-  const [seventeenNumbers, setSeventeenNumbers] = useState(getSeventeenNumbers(finalNumbers, allNumbers))
+  // const [allNumbers, setAllNumbers] = useState([firstThird, secondThird, thirdThird])
+  // const [finalNumbers, setFinalNumbers] = useState(getFinalNumbers(allNumbers))
+  // const [seventeenNumbers, setSeventeenNumbers] = useState(getSeventeenNumbers(finalNumbers, allNumbers))
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const input = e.target.querySelector('input[type="number"]');
@@ -38,26 +39,26 @@ function App() {
     }
     
     const newUnchosenNumbers = getUnchosenNumbers(updatedNumbers)
-    const newNumbersColors = getNumbersColors(newUnchosenNumbers)
-    const newThirds = getThirds(newNumbersColors)
-    const newFirstThird = getThirdsColors(newThirds.first)
-    const newSecondThird = getThirdsColors(newThirds.second)
-    const newThirdThird = getThirdsColors(newThirds.third)
-    const newAllNumbers = [newFirstThird, newSecondThird, newThirdThird]
-    const newFinalNumbers = getFinalNumbers(newAllNumbers, newUnchosenNumbers)
-    const newSeventeenNumbers = getSeventeenNumbers(newFinalNumbers, newAllNumbers)
+    // const newNumbersColors = getNumbersColors(newUnchosenNumbers)
+    // const newThirds = getThirds(newNumbersColors)
+    // const newFirstThird = getThirdsColors(newThirds.first)
+    // const newSecondThird = getThirdsColors(newThirds.second)
+    // const newThirdThird = getThirdsColors(newThirds.third)
+    // const newAllNumbers = [newFirstThird, newSecondThird, newThirdThird]
+    // const newFinalNumbers = getFinalNumbers(newAllNumbers, newUnchosenNumbers)
+    // const newSeventeenNumbers = getSeventeenNumbers(newFinalNumbers, newAllNumbers)
 
     setNumbers(updatedNumbers)
     saveNumbers(updatedNumbers)
     setInputValue('')
     setUnchosenNumbers(newUnchosenNumbers)
-    setNumbersColors(newNumbersColors)
-    setFirstThird(newFirstThird)
-    setSecondThird(newSecondThird)
-    setThirdThird(newThirdThird)
-    setAllNumbers(newAllNumbers)
-    setFinalNumbers(newFinalNumbers)
-    setSeventeenNumbers(newSeventeenNumbers)
+      // setNumbersColors(newNumbersColors)
+      // setFirstThird(newFirstThird)
+      // setSecondThird(newSecondThird)
+      // setThirdThird(newThirdThird)
+      // setAllNumbers(newAllNumbers)
+      // setFinalNumbers(newFinalNumbers)
+      // setSeventeenNumbers(newSeventeenNumbers)
     setTimeout(() => {
       input.focus();
     }, 0);
@@ -96,98 +97,30 @@ function App() {
           <h2 className="text-2xl sm:text-3xl font-bold text-[#175217] mb-6 text-center border-b-2 border-[#175217] pb-2">
             Predicted Numbers
           </h2>
+          
+        <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 mt-6">
+          
           <div className="flex flex-wrap gap-3 justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full">
-              {/* First Third */}
-              <div className="flex flex-col gap-3 bg-[#f8f9fa] p-4 rounded-lg shadow-md">
-                <h3 className="text-lg sm:text-xl font-bold text-center text-[#000000] border-b border-[#000000] pb-2">
-                  First (0-12)
-                </h3>
-                <div className="flex flex-col gap-4">
-                  {/* Red numbers row */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {seventeenNumbers[0]?.red.map((number) => (
-                      <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                        {number}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Black numbers row */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {seventeenNumbers[0]?.black.map((number) => (
-                      <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                        {number}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Green numbers row */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {seventeenNumbers[0]?.green.map((number) => (
-                      <span key={number} className="p-2 bg-green-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                        {number}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Second Third */}
-              <div className="flex flex-col gap-3 bg-[#f8f9fa] p-4 rounded-lg shadow-md">
-                <h3 className="text-lg sm:text-xl font-bold text-center text-[#000000] border-b border-[#000000] pb-2">
-                  Second (13-24)
-                </h3>
-                <div className="flex flex-col gap-4">
-                  {/* Red numbers row */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {seventeenNumbers[1]?.red.map((number) => (
-                      <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                        {number}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Black numbers row */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {seventeenNumbers[1]?.black.map((number) => (
-                      <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                        {number}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Third Third */}
-              <div className="flex flex-col gap-3 bg-[#f8f9fa] p-4 rounded-lg shadow-md">
-                <h3 className="text-lg sm:text-xl font-bold text-center text-[#000000] border-b border-[#000000] pb-2">
-                  Third (25-36)
-                </h3>
-                <div className="flex flex-col gap-4">
-                  {/* Red numbers row */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {seventeenNumbers[2]?.red.map((number) => (
-                      <span key={number} className="p-2 bg-red-600 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                        {number}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Black numbers row */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {seventeenNumbers[2]?.black.map((number) => (
-                      <span key={number} className="p-2 bg-gray-800 text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold">
-                        {number}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            {unchosenNumbers.map((number) => {
+              const color = rolletteNumbers[number].color;
+              const bgColor = 
+                color === 'red' ? 'bg-red-600' : 
+                color === 'black' ? 'bg-gray-800' : 
+                'bg-green-600';
+              
+              return (
+                <span 
+                  key={number} 
+                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold`}
+                >
+                  {number}
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

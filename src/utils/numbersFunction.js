@@ -2,7 +2,10 @@ import rolletteNumbers from '../assets/rolletteNumbers.json'
 
 export const getUnchosenNumbers = (numbers) => {
   const allNumbers = Array.from({ length: 37 }, (_, i) => i)
-  return allNumbers.filter(number => !numbers.includes(number))
+  const filteredNumbers = allNumbers.filter(number => !numbers.includes(number))
+  const shuffled = [...filteredNumbers].sort(() => Math.random() - 0.5)
+  const randomSeventeen = shuffled.slice(0, 17)
+  return randomSeventeen.sort((a, b) => a - b)
 }
 
 export const getNumbersColors = (numbers) => {
