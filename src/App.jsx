@@ -67,10 +67,7 @@ function App() {
 
   return (
     <div className="w-screen min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-3 sm:px-4 lg:px-6">
-      <div className="max-w-4xl mx-auto bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl p-4 sm:p-6">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-6 sm:mb-8 drop-shadow-lg">
-          Roulette Statistics
-        </h1>
+     
         <form onSubmit={handleSubmit} noValidate>
         <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
           <input 
@@ -106,7 +103,7 @@ function App() {
               return (
                 <span 
                   key={number} 
-                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center text-xl sm:text-2xl font-bold`}
+                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-xl sm:text-3xl font-bold`}
                 >
                   {number}
                 </span>
@@ -115,7 +112,7 @@ function App() {
           </div>
       </div>
     </div>
-    </div>
+  
   )
 }
 
