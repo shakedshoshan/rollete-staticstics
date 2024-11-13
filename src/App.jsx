@@ -67,7 +67,7 @@ function App() {
 
   return (
     <div className="w-screen min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-3 sm:px-4 lg:px-6">
-      <div className="max-w-4xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl p-4 sm:p-6">
+      <div className="max-w-4xl mx-auto bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl p-4 sm:p-6">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-6 sm:mb-8 drop-shadow-lg">
           Roulette Statistics
         </h1>
@@ -97,7 +97,7 @@ function App() {
         <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6">
         <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 mt-6">
           
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-2 justify-center max-w-5xl mx-auto">
             {unchosenNumbers.map((number) => {
               const color = rolletteNumbers[number].color;
               const bgColor = 
@@ -108,7 +108,7 @@ function App() {
               return (
                 <span 
                   key={number} 
-                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-lg sm:text-xl font-semibold`}
+                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-xl font-semibold`}
                 >
                   {number}
                 </span>
@@ -117,9 +117,9 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
     </div>
   )
 }
 
-export default App
+export default App;
