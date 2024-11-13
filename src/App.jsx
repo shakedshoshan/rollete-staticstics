@@ -85,7 +85,7 @@ function App() {
           />
           <button 
             type="submit"
-            className="w-1/3 sm:w-auto px-6 py-3 bg-[#175217] hover:bg-[#2c773f] text-white font-bold rounded-lg border-2 border-[#ffffff] shadow-[0_0_10px_rgba(184,134,11,0.5)] transform hover:scale-105 transition-all duration-300"
+            className="w-1/3 sm:w-auto px-6 py-3 bg-[#020c2e] hover:bg-[#2c773f] text-white font-bold rounded-lg border-2 border-[#ffffff] shadow-[0_0_10px_rgba(184,134,11,0.5)] transform hover:scale-105 transition-all duration-300"
           >
             Enter
           </button>
