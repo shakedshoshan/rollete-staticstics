@@ -69,9 +69,9 @@ function App() {
     <div className="w-screen min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-3 sm:px-4 lg:px-6">
      
         <form onSubmit={handleSubmit} noValidate>
-        <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
+        <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-10">
           <input 
-            className="w-2/3 px-3 py-2 bg-[#ffffff] text-black border-2 border-[#ffffff] rounded-md shadow-inner focus:border-[#4d4d4d] focus:outline-none transition-all duration-300"
+            className="w-2/3 px-3 py-3 bg-[#ffffff] text-black border-2 border-[#ffffff] rounded-md shadow-inner focus:border-[#4d4d4d] focus:outline-none transition-all duration-300"
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -85,13 +85,13 @@ function App() {
           />
           <button 
             type="submit"
-            className="w-1/3 sm:w-auto px-6 py-2 bg-[#175217] hover:bg-[#2c773f] text-white font-bold rounded-lg border-2 border-[#ffffff] shadow-[0_0_10px_rgba(184,134,11,0.5)] transform hover:scale-105 transition-all duration-300"
+            className="w-1/3 sm:w-auto px-6 py-3 bg-[#175217] hover:bg-[#2c773f] text-white font-bold rounded-lg border-2 border-[#ffffff] shadow-[0_0_10px_rgba(184,134,11,0.5)] transform hover:scale-105 transition-all duration-300"
           >
             Enter
           </button>
         </div>
         </form>
-        <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 mt-6"> 
+        <div className="bg-white bg-opacity-75 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl p-4 sm:p-6"> 
           <div className="flex flex-wrap max-w-4xl mx-auto gap-3 justify-center">
             {unchosenNumbers.map((number) => {
               const color = rolletteNumbers[number].color;
