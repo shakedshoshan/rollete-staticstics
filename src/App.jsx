@@ -65,7 +65,7 @@ function App() {
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 text-center mb-6 sm:mb-8 drop-shadow-lg">
           Roulette Statistics
         </h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
         <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
           <input 
             className="w-2/3 px-3 py-2 bg-[#e9e9e9] text-black border-2 border-[#ffffff] rounded-md shadow-inner focus:border-[#4d4d4d] focus:outline-none transition-all duration-300"
@@ -75,13 +75,11 @@ function App() {
             placeholder="Enter a number..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                handleSubmit(e)
-              }
-            }}
           />
-          <button className="w-1/3 sm:w-auto px-6 py-2 bg-[#175217] hover:bg-[#2c773f] text-white font-bold rounded-lg border-2 border-[#ffffff] shadow-[0_0_10px_rgba(184,134,11,0.5)] transform hover:scale-105 transition-all duration-300">
+          <button 
+            type="submit"
+            className="w-1/3 sm:w-auto px-6 py-2 bg-[#175217] hover:bg-[#2c773f] text-white font-bold rounded-lg border-2 border-[#ffffff] shadow-[0_0_10px_rgba(184,134,11,0.5)] transform hover:scale-105 transition-all duration-300"
+          >
             Enter
           </button>
         </div>
