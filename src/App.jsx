@@ -95,10 +95,6 @@ function App() {
         </div>
         </form>
         <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#175217] mb-6 text-center border-b-2 border-[#175217] pb-2">
-            Predicted Numbers
-          </h2>
-          
         <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 mt-6">
           
           <div className="flex flex-wrap gap-3 justify-center">
@@ -112,7 +108,7 @@ function App() {
               return (
                 <span 
                   key={number} 
-                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-semibold`}
+                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-lg sm:text-xl font-semibold`}
                 >
                   {number}
                 </span>
