@@ -94,10 +94,8 @@ function App() {
           </button>
         </div>
         </form>
-        <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6">
-        <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 mt-6">
-          
-          <div className="flex flex-wrap gap-2 justify-center max-w-5xl mx-auto">
+        <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 mt-6"> 
+          <div className="flex flex-wrap max-w-4xl mx-auto gap-3 justify-center">
             {unchosenNumbers.map((number) => {
               const color = rolletteNumbers[number].color;
               const bgColor = 
@@ -108,18 +106,17 @@ function App() {
               return (
                 <span 
                   key={number} 
-                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-xl font-semibold`}
+                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-lg sm:text-xl font-semibold`}
                 >
                   {number}
                 </span>
               );
             })}
           </div>
-        </div>
       </div>
-      </div>
+    </div>
     </div>
   )
 }
 
-export default App;
+export default App
