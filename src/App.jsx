@@ -19,16 +19,17 @@ function App() {
   const [seventeenNumbers, setSeventeenNumbers] = useState(getSeventeenNumbers(finalNumbers, allNumbers))
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.trim() === '') return
+    const input = e.target.querySelector('input[type="number"]');
+    if (inputValue.trim() === '') return;
 
-    const newNumber = Number(inputValue)
+    const newNumber = Number(inputValue);
     if (isNaN(newNumber)) {
-      toast.error('Please enter a valid number')
-      return
+      toast.error('Please enter a valid number');
+      return;
     }
     if (newNumber < 0 || newNumber > 36) {
-      toast.error('Number must be between 0 and 36')
-      return
+      toast.error('Number must be between 0 and 36');
+      return;
     }
 
     const updatedNumbers = [...numbers, newNumber]
@@ -57,6 +58,9 @@ function App() {
     setAllNumbers(newAllNumbers)
     setFinalNumbers(newFinalNumbers)
     setSeventeenNumbers(newSeventeenNumbers)
+    setTimeout(() => {
+      input.focus();
+    }, 0);
   }
 
   return (
@@ -69,12 +73,16 @@ function App() {
         <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
           <input 
             className="w-2/3 px-3 py-2 bg-[#e9e9e9] text-black border-2 border-[#ffffff] rounded-md shadow-inner focus:border-[#4d4d4d] focus:outline-none transition-all duration-300"
-            type="text"
+            type="number"
             inputMode="numeric"
             pattern="[0-9]*"
+            min="0"
+            max="36"
             placeholder="Enter a number..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            onBlur={(e) => e.target.focus()}
+            autoFocus
           />
           <button 
             type="submit"
