@@ -106,7 +106,7 @@ function App() {
               return (
                 <span 
                   key={number} 
-                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-lg sm:text-xl font-semibold`}
+                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center text-xl sm:text-2xl font-bold`}
                 >
                   {number}
                 </span>
