@@ -69,7 +69,9 @@ function App() {
         <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
           <input 
             className="w-2/3 px-3 py-2 bg-[#e9e9e9] text-black border-2 border-[#ffffff] rounded-md shadow-inner focus:border-[#4d4d4d] focus:outline-none transition-all duration-300"
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             placeholder="Enter a number..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
