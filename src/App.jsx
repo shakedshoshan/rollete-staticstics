@@ -4,7 +4,7 @@ import { saveNumbers, getNumbers } from './utils/localStorage'
 import { getUnchosenNumbers } from './utils/numbersFunction'
 import rolletteNumbers from './assets/rolletteNumbers.json'
 import { toast } from 'react-toastify'
-import { getNumbersColors, getThirds, getThirdsColors, getFinalNumbers, getSeventeenNumbers } from './utils/numbersFunction'
+import { getNumbersColors, getThirds, getThirdsColors, getFinalNumbers, getSeventeenNumbers, moveNumberToEnd } from './utils/numbersFunction'
 
 function App() {
   const [numbers, setNumbers] = useState(getNumbers())
@@ -14,6 +14,7 @@ function App() {
   // const [secondThird, setSecondThird] = useState(getThirdsColors(getThirds(numbersColors).second))
   // const [thirdThird, setThirdThird] = useState(getThirdsColors(getThirds(numbersColors).third))
   const [inputValue, setInputValue] = useState('')
+  const [showColors, setShowColors] = useState(true)
   // const [allNumbers, setAllNumbers] = useState([firstThird, secondThird, thirdThird])
   // const [finalNumbers, setFinalNumbers] = useState(getFinalNumbers(allNumbers))
   // const [seventeenNumbers, setSeventeenNumbers] = useState(getSeventeenNumbers(finalNumbers, allNumbers))
@@ -33,13 +34,16 @@ function App() {
       return;
     }
 
-    const updatedNumbers = [...numbers, newNumber]
-    if (updatedNumbers.length > 20) {
-      updatedNumbers.shift()
-    }
-    
-    const newUnchosenNumbers = getUnchosenNumbers(updatedNumbers)
+    const updatedNumbers = moveNumberToEnd(numbers, newNumber)
     console.log(updatedNumbers)
+
+    // const updatedNumbers = [...numbers, newNumber]
+    // if (updatedNumbers.length > 20) {
+    //   updatedNumbers.shift()
+    // }
+    
+    // const newUnchosenNumbers = getUnchosenNumbers(updatedNumbers)
+    // console.log(updatedNumbers)
     // const newNumbersColors = getNumbersColors(newUnchosenNumbers)
     // const newThirds = getThirds(newNumbersColors)
     // const newFirstThird = getThirdsColors(newThirds.first)
@@ -52,7 +56,7 @@ function App() {
     setNumbers(updatedNumbers)
     saveNumbers(updatedNumbers)
     setInputValue('')
-    setUnchosenNumbers(newUnchosenNumbers)
+    // setUnchosenNumbers(newUnchosenNumbers)
       // setNumbersColors(newNumbersColors)
       // setFirstThird(newFirstThird)
       // setSecondThird(newSecondThird)
@@ -93,23 +97,32 @@ function App() {
         </form>
         <div className="bg-white bg-opacity-75 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl p-4 sm:p-6"> 
           <div className="flex flex-wrap max-w-4xl mx-auto gap-3 justify-center">
-            {unchosenNumbers.map((number) => {
+            {numbers.slice(0, 17).map((number) => {
               const color = rolletteNumbers[number].color;
-              const bgColor = 
+              const bgColor = showColors ? (
                 color === 'red' ? 'bg-red-600' : 
                 color === 'black' ? 'bg-gray-800' : 
-                'bg-green-600';
-              
+                'bg-green-600'
+              ) : 'bg-slate-200 border-2 border-slate-800';
               return (
                 <span 
                   key={number} 
-                  className={`p-2 ${bgColor} text-white rounded-full shadow-md text-center w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-xl sm:text-3xl font-bold`}
+                  className={`p-2 ${bgColor} ${showColors ? 'text-white' : 'text-slate-800'} rounded-full shadow-md text-center w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-xl sm:text-3xl font-bold`}
                 >
                   {number}
                 </span>
               );
             })}
           </div>
+      </div>
+      <div className="flex flex-col justify-center mt-6 gap-3">
+        <h1 className="text-white text-2xl font-bold">Best 17 Numbers</h1>
+        <button 
+          onClick={() => setShowColors(!showColors)}
+          className={`w-40 px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff] transform mx-auto`}
+        >
+          {showColors ? 'No Colors' : 'With Colors'}
+        </button>
       </div>
     </div>
   

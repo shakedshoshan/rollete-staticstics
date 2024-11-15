@@ -8,6 +8,22 @@ export const getUnchosenNumbers = (numbers) => {
   return randomSeventeen.sort((a, b) => a - b)
 }
 
+
+export const moveNumberToEnd = (numbers, number) => {
+  const newNumbers = [...numbers]
+  const index = newNumbers.indexOf(number)
+  
+  if (index !== -1) {
+    // Remove number from current position
+    newNumbers.splice(index, 1)
+  }
+  
+  // Add number to end
+  newNumbers.push(number)
+  return newNumbers
+}
+
+
 export const getNumbersColors = (numbers) => {
     const colorOrder = ['red', 'black', 'green'];
     // Remove duplicates using Set
