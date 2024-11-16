@@ -8,7 +8,7 @@ import { getNumbersColors, getThirds, getThirdsColors, getFinalNumbers, getSeven
 
 function App() {
   const [numbers, setNumbers] = useState(getNumbers())
-  const [unchosenNumbers, setUnchosenNumbers] = useState(getUnchosenNumbers(numbers))
+  const [unchosenNumbers, setUnchosenNumbers] = useState(getNumbers().slice(0, 17).sort((a, b) => a - b))
   // const [numbersColors, setNumbersColors] = useState(getNumbersColors(unchosenNumbers))
   // const [firstThird, setFirstThird] = useState(getThirdsColors(getThirds(numbersColors).first))
   // const [secondThird, setSecondThird] = useState(getThirdsColors(getThirds(numbersColors).second))
@@ -98,7 +98,7 @@ function App() {
         </form>
         <div className="bg-white bg-opacity-75 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl p-4 sm:p-6"> 
           <div className="flex flex-wrap max-w-4xl mx-auto gap-3 justify-center">
-            {numbers.slice(0, 17).map((number) => {
+            {unchosenNumbers.slice(0, 17).map((number) => {
               const color = rolletteNumbers[number].color;
               const bgColor = showColors ? (
                 color === 'red' ? 'bg-red-600' : 
