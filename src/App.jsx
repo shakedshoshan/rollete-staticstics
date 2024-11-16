@@ -35,6 +35,7 @@ function App() {
     }
 
     const updatedNumbers = moveNumberToEnd(numbers, newNumber)
+    setUnchosenNumbers(updatedNumbers.slice(0, 17).sort((a, b) => a - b))
     console.log(updatedNumbers)
 
     // const updatedNumbers = [...numbers, newNumber]
