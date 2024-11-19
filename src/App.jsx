@@ -71,12 +71,12 @@ function App() {
   }
 
   return (
-    <div className="w-screen min-h-screen bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000] py-6 px-3 sm:px-4 lg:px-6">
+    <div className={`w-screen min-h-screen ${showColors ? 'bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000]' : 'bg-[#f3f2f2]'} py-6 px-3 sm:px-4 lg:px-6`}>
      
         <form onSubmit={handleSubmit} noValidate>
         <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-10">
           <input 
-            className="w-2/3 px-3 py-3 bg-[#ffffff] text-black border-2 border-[#ffffff] rounded-md shadow-inner focus:border-[#4d4d4d] focus:outline-none transition-all duration-300"
+            className={`w-2/3 px-3 py-3 bg-[#ffffff] text-black border-2 ${showColors ? 'border-[#ffffff]' : 'border-[#000000]'} rounded-md shadow-inner focus:border-[#4d4d4d] focus:outline-none transition-all duration-300`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -108,7 +108,7 @@ function App() {
               return (
                 <span 
                   key={number} 
-                  className={`p-2 ${bgColor} ${showColors ? 'text-white' : 'text-slate-800'} rounded-full shadow-md text-center w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-xl sm:text-3xl font-bold`}
+                  className={`p-1 ${bgColor} ${showColors ? 'text-white' : 'text-slate-800'} rounded-full shadow-md text-center w-16 h-16 sm:w-16 sm:h-16 flex items-center justify-center text-3xl sm:text-3xl font-bold`}
                 >
                   {number}
                 </span>
@@ -117,7 +117,7 @@ function App() {
           </div>
       </div>
       <div className="flex flex-col justify-center mt-6 gap-3">
-        <h1 className="text-white text-2xl font-bold">Best 17 Numbers</h1>
+        <h1 className={`${showColors ? 'text-white' : 'text-black'} text-2xl font-bold`}>Best 17 Numbers</h1>
         <button 
           onClick={() => setShowColors(!showColors)}
           className={`w-40 px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff] transform mx-auto`}
