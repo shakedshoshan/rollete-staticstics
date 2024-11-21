@@ -45,13 +45,4 @@ npm run dev
 npm run build
 ```
 
-## License
 
-MIT License
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-```
-
-This README provides a concise overview of your project, its features, the technology stack used, and instructions for getting started. Feel free to customize it further based on your specific needs!
