@@ -1,6 +1,6 @@
-Here's a short README.md file for your GitHub repository:
 
-```markdown
+
+
 # Roulette Stats Tracker
 
 A React-based web application for tracking and analyzing roulette numbers. Built with React, Vite, and TailwindCSS.
