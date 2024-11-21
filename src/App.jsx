@@ -8,16 +8,19 @@ import { getNumbersColors, getThirds, getThirdsColors, getFinalNumbers, getSeven
 
 function App() {
   const [numbers, setNumbers] = useState(getNumbers())
-  const [unchosenNumbers, setUnchosenNumbers] = useState(getNumbers().slice(0, 17).sort((a, b) => a - b))
+  
   // const [numbersColors, setNumbersColors] = useState(getNumbersColors(unchosenNumbers))
   // const [firstThird, setFirstThird] = useState(getThirdsColors(getThirds(numbersColors).first))
   // const [secondThird, setSecondThird] = useState(getThirdsColors(getThirds(numbersColors).second))
   // const [thirdThird, setThirdThird] = useState(getThirdsColors(getThirds(numbersColors).third))
   const [inputValue, setInputValue] = useState('')
   const [showColors, setShowColors] = useState(true)
+  const [amountOfNumbers, setAmountOfNumbers] = useState(17)
   // const [allNumbers, setAllNumbers] = useState([firstThird, secondThird, thirdThird])
   // const [finalNumbers, setFinalNumbers] = useState(getFinalNumbers(allNumbers))
   // const [seventeenNumbers, setSeventeenNumbers] = useState(getSeventeenNumbers(finalNumbers, allNumbers))
+  const [tempAmount, setTempAmount] = useState(17)
+  const [unchosenNumbers, setUnchosenNumbers] = useState(getNumbers().slice(0, amountOfNumbers).sort((a, b) => a - b))
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,8 +38,8 @@ function App() {
     }
 
     const updatedNumbers = moveNumberToEnd(numbers, newNumber)
-    setUnchosenNumbers(updatedNumbers.slice(0, 17).sort((a, b) => a - b))
-    console.log(updatedNumbers)
+    setUnchosenNumbers(updatedNumbers.slice(0, amountOfNumbers).sort((a, b) => a - b))
+    // console.log(updatedNumbers)
 
     // const updatedNumbers = [...numbers, newNumber]
     // if (updatedNumbers.length > 20) {
@@ -70,11 +73,41 @@ function App() {
     }, 0);
   }
 
+  const handleAmountSubmit = (e) => {
+    e.preventDefault();
+    const value = parseInt(tempAmount);
+    let finalValue = value;
+    
+    if (isNaN(finalValue) || finalValue < 1) finalValue = 1;
+    if (finalValue > 36) finalValue = 36;
+    
+    setAmountOfNumbers(finalValue);
+    setTempAmount(finalValue);
+  }
+
+  const handleIncrement = () => {
+    const newValue = parseInt(amountOfNumbers) + 1;
+    if (newValue <= 36) {
+      setAmountOfNumbers(newValue);
+      setTempAmount(newValue);
+      setUnchosenNumbers(numbers.slice(0, newValue).sort((a, b) => a - b));
+    }
+  }
+
+  const handleDecrement = () => {
+    const newValue = parseInt(amountOfNumbers) - 1;
+    if (newValue >= 1) {
+      setAmountOfNumbers(newValue);
+      setTempAmount(newValue);
+      setUnchosenNumbers(numbers.slice(0, newValue).sort((a, b) => a - b));
+    }
+  }
+
   return (
     <div className={`w-screen min-h-screen ${showColors ? 'bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000]' : 'bg-[#f3f2f2]'} py-6 px-3 sm:px-4 lg:px-6`}>
      
         <form onSubmit={handleSubmit} noValidate>
-        <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-10">
+        <div className="flex flex-row sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-1 sm:mb-10">
           <input 
             className={`w-2/3 px-3 py-3 bg-[#ffffff] text-black border-2 ${showColors ? 'border-[#ffffff]' : 'border-[#000000]'} rounded-md shadow-inner focus:border-[#4d4d4d] focus:outline-none transition-all duration-300`}
             type="number"
@@ -96,9 +129,9 @@ function App() {
           </button>
         </div>
         </form>
-        <div className="bg-white bg-opacity-75 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl p-4 sm:p-6"> 
+        <div className="bg-white bg-opacity-75 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl p-2 sm:p-6 "> 
           <div className="flex flex-wrap max-w-4xl mx-auto gap-3 justify-center">
-            {unchosenNumbers.slice(0, 17).map((number) => {
+            {unchosenNumbers.slice(0, amountOfNumbers).map((number) => {
               const color = rolletteNumbers[number].color;
               const bgColor = showColors ? (
                 color === 'red' ? 'bg-red-600' : 
@@ -117,13 +150,35 @@ function App() {
           </div>
       </div>
       <div className="flex flex-col justify-center mt-6 gap-3">
-        <h1 className={`${showColors ? 'text-white' : 'text-black'} text-2xl font-bold`}>Best 17 Numbers</h1>
-        <button 
-          onClick={() => setShowColors(!showColors)}
+        <h1 className={`${showColors ? 'text-white' : 'text-black'} text-2xl font-bold`}>Best {amountOfNumbers} Numbers</h1>
+        
+          <button 
+            onClick={() => setShowColors(!showColors)}
           className={`w-40 px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff] transform mx-auto`}
         >
           {showColors ? 'No Colors' : 'With Colors'}
         </button>
+        <h2 className={`${showColors ? 'text-white' : 'text-black'} text-2xl font-bold`}>Amount of numbers</h2>
+        <div className="flex flex-row justify-center gap-3">
+          <div className="flex flex-row justify-center items-center gap-3">
+            <button 
+              onClick={handleDecrement}
+              className={`px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff]`}
+            >
+              ↓
+            </button>
+            <span className={`text-xl font-bold ${showColors ? 'text-white' : 'text-black'}`}>
+              {amountOfNumbers}
+            </span>
+            <button 
+              onClick={handleIncrement}
+              className={`px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff]`}
+            >
+              ↑
+            </button>
+          </div>
+        </div>
+      
       </div>
     </div>
   
