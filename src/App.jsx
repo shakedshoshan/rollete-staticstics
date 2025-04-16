@@ -20,6 +20,7 @@ function App() {
   // const [finalNumbers, setFinalNumbers] = useState(getFinalNumbers(allNumbers))
   // const [seventeenNumbers, setSeventeenNumbers] = useState(getSeventeenNumbers(finalNumbers, allNumbers))
   const [tempAmount, setTempAmount] = useState(17)
+  const [showFirstNumbers, setShowFirstNumbers] = useState(true)
   const [unchosenNumbers, setUnchosenNumbers] = useState(getNumbers().slice(0, amountOfNumbers).sort((a, b) => a - b))
 
   const handleSubmit = (e) => {
@@ -38,36 +39,17 @@ function App() {
     }
 
     const updatedNumbers = moveNumberToEnd(numbers, newNumber)
-    setUnchosenNumbers(updatedNumbers.slice(0, amountOfNumbers).sort((a, b) => a - b))
-    // console.log(updatedNumbers)
-
-    // const updatedNumbers = [...numbers, newNumber]
-    // if (updatedNumbers.length > 20) {
-    //   updatedNumbers.shift()
-    // }
-    
-    // const newUnchosenNumbers = getUnchosenNumbers(updatedNumbers)
-    // console.log(updatedNumbers)
-    // const newNumbersColors = getNumbersColors(newUnchosenNumbers)
-    // const newThirds = getThirds(newNumbersColors)
-    // const newFirstThird = getThirdsColors(newThirds.first)
-    // const newSecondThird = getThirdsColors(newThirds.second)
-    // const newThirdThird = getThirdsColors(newThirds.third)
-    // const newAllNumbers = [newFirstThird, newSecondThird, newThirdThird]
-    // const newFinalNumbers = getFinalNumbers(newAllNumbers, newUnchosenNumbers)
-    // const newSeventeenNumbers = getSeventeenNumbers(newFinalNumbers, newAllNumbers)
-
     setNumbers(updatedNumbers)
     saveNumbers(updatedNumbers)
+    
+    // Update unchosenNumbers based on showFirstNumbers state
+    if (showFirstNumbers) {
+      setUnchosenNumbers(updatedNumbers.slice(0, amountOfNumbers).sort((a, b) => a - b))
+    } else {
+      setUnchosenNumbers(updatedNumbers.slice(-amountOfNumbers).sort((a, b) => a - b))
+    }
+    
     setInputValue('')
-    // setUnchosenNumbers(newUnchosenNumbers)
-      // setNumbersColors(newNumbersColors)
-      // setFirstThird(newFirstThird)
-      // setSecondThird(newSecondThird)
-      // setThirdThird(newThirdThird)
-      // setAllNumbers(newAllNumbers)
-      // setFinalNumbers(newFinalNumbers)
-      // setSeventeenNumbers(newSeventeenNumbers)
     setTimeout(() => {
       input.focus();
     }, 0);
@@ -103,6 +85,15 @@ function App() {
     }
   }
 
+  const toggleFirstLast = () => {
+    setShowFirstNumbers(!showFirstNumbers);
+    if (showFirstNumbers) {
+      setUnchosenNumbers(numbers.slice(-amountOfNumbers).sort((a, b) => a - b));
+    } else {
+      setUnchosenNumbers(numbers.slice(0, amountOfNumbers).sort((a, b) => a - b));
+    }
+  }
+
   return (
     <div className={`w-screen min-h-screen ${showColors ? 'bg-gradient-to-r from-[#004d00] via-[#006600] to-[#008000]' : 'bg-[#f3f2f2]'} py-6 px-3 sm:px-4 lg:px-6`}>
      
@@ -123,7 +114,7 @@ function App() {
           />
           <button 
             type="submit"
-            className="w-1/3 sm:w-auto px-6 py-3 bg-[#020c2e] hover:bg-[#2c773f] text-white font-bold rounded-lg border-2 border-[#ffffff] shadow-[0_0_10px_rgba(184,134,11,0.5)] transform hover:scale-105 transition-all duration-300"
+            className="w-1/3 sm:w-auto px-6 py-3 bg-[#020c2e] hover:bg-[#2c773f] text-white font-bold rounded-lg border-2 border-[#ffffff] shadow-[0_0_10px_rgba(184,134,11,0.5)] transform hover:scale-105 transition-all duration-300 hover:shadow-lg"
           >
             Enter
           </button>
@@ -150,20 +141,28 @@ function App() {
           </div>
       </div>
       <div className="flex flex-col justify-center mt-6 gap-3">
-        <h1 className={`${showColors ? 'text-white' : 'text-black'} text-2xl font-bold`}>Best {amountOfNumbers} Numbers</h1>
+        <h1 className={`${showColors ? 'text-white' : 'text-black'} text-2xl font-bold`}>{showFirstNumbers ? 'Most Unchosen' : 'Most Chosen'} {amountOfNumbers} Numbers</h1>
         
           <button 
             onClick={() => setShowColors(!showColors)}
-          className={`w-40 px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff] transform mx-auto`}
+            className={`w-40 px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff] transform hover:scale-105 transition-all duration-300 hover:shadow-lg mx-auto`}
+          >
+            {showColors ? 'No Colors' : 'With Colors'}
+          </button>
+
+        <button 
+          onClick={toggleFirstLast}
+          className={`w-40 px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff] transform hover:scale-105 transition-all duration-300 hover:shadow-lg mx-auto`}
         >
-          {showColors ? 'No Colors' : 'With Colors'}
+          {showFirstNumbers ? 'Show Lastest Numbers' : 'Show Unchosen Numbers'}
         </button>
+
         <h2 className={`${showColors ? 'text-white' : 'text-black'} text-2xl font-bold`}>Amount of numbers</h2>
         <div className="flex flex-row justify-center gap-3">
           <div className="flex flex-row justify-center items-center gap-3">
             <button 
               onClick={handleDecrement}
-              className={`px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff]`}
+              className={`px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff] transform hover:scale-105 transition-all duration-300 hover:shadow-lg`}
             >
               ↓
             </button>
@@ -172,7 +171,7 @@ function App() {
             </span>
             <button 
               onClick={handleIncrement}
-              className={`px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff]`}
+              className={`px-4 py-2 ${showColors ? 'bg-[#2c773f]' : 'bg-[#020c2e]'} text-white font-bold rounded-lg border-2 border-[#ffffff] transform hover:scale-105 transition-all duration-300 hover:shadow-lg`}
             >
               ↑
             </button>
